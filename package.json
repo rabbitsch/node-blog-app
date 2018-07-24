@@ -1,0 +1,19 @@
+{
+  "name": "nodeblog",
+  "version": "1.0.0",
+  "description": "node-proj",
+  "main": "model.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Kevin-Schmitz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
+    "uuid": "^3.3.2"
+  }
+}
