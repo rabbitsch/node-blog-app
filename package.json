@@ -2,9 +2,9 @@
   "name": "nodeblog",
   "version": "1.0.0",
   "description": "node-proj",
-  "main": "model.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "author": "Kevin-Schmitz",
@@ -12,8 +12,14 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "mongoose": "^5.2.6",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.3",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
   }
 }

@@ -6,8 +6,12 @@ const jsonParser = bodyParser.json();
 
 const {BlogPosts} = require('./model')
 
+
+console.log('can you hear me blog post!')
+
 router.get('/', function(req,res){
   res.json(BlogPosts.get());
+  res.send('hello GET');
 });
 
 

@@ -2,10 +2,10 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 
 
-const {blogPostRouter} = require('/blogPostRouter');
+// const {blogPostRouter} = require('/blogPostRouter.js');
 
-const {app, closeServer, runServer} = require('/server.js');
-
+const {app, closeServer, runServer} = require('../server');
+// console.log(require('../server'));
 const should = chai.should;
 chai.use(chaiHttp);
 
@@ -13,13 +13,23 @@ chai.use(chaiHttp);
 describe('BlogPost', function(){
 
 
-before(function(){
-  return runServer();
+before(function(done){
+  console.log('i made it here before run ')
+   runServer().then(function(){
+     console.log('i made it here after run')
+     done();
+   }).catch(function(error){
+     console.log(error, 'before error')
+   })
 });
 
 
-after(function(){
-  return closeServer
+after(function(done){
+   closeServer().then(function(){
+     done();
+   }).catch(function(error){
+     console.log(error,'after error')
+   })
 });
 
   it('should test my get endpoint', function(){
@@ -29,7 +39,7 @@ after(function(){
         res.should.have.a.status(201)
         res.should.be.a.json;
         const expectedKeys = ["authorName","title","content"]
-          res.body.forEach(data){
+          res.body.forEach(data => {
             should(data).include.keys(expectedKeys);
           });
       });
@@ -43,8 +53,8 @@ after(function(){
     }
     return chai.request(app)
       .post('/blogPostRouter')
-      .send(objTest);
-      .then(function(res){
+      .send(objTest)
+      .then(res =>{
         res.should.have.status(200);
         res.body.should.be.a('object');
       });
@@ -69,7 +79,17 @@ after(function(){
       });
   });
 
+  it('should test my Delete', function(){
+    return chai.request(app)
+      .get('/blogPostRouter')
+      .then(res => {
+        return chai.request(app)
+          .delete(`/blogPostRouter/${object.body.id}`)
+      })
+      .then(res => {
+        res.should.have.status(204);
+      })
+      done();
+  });
 
-
-  })
-})
+});
