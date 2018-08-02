@@ -6,6 +6,10 @@ const jsonParser = bodyParser.json();
 
 const {BlogPosts} = require('./model')
 
+const { PORT, DATABASE_URL } = require("./config");
+
+console.log(DATABASE_URL)
+
 
 console.log('can you hear me blog post!')
 

@@ -36,7 +36,7 @@ after(function(done){
     return chai.request(app)
       .get('/blogPostRouter')
       .then(function(res){
-        res.should.have.a.status(201)
+        res.should.have.status(201)
         res.should.be.a.json;
         const expectedKeys = ["authorName","title","content"]
           res.body.forEach(data => {
@@ -69,12 +69,13 @@ after(function(done){
     return chai.request(app)
       .get('/blogPostRouter')
       .then(function(res){
-        updatedObj.id = res.body[0].id
+        updatedObj.id = res.body[0]
         return chai.request(app)
           .put(`/blogPostRouter/${updatedObj.id}`)
           .send(updatedObj)
       })
       .then(function(res){
+        
         res.should.have.status(204);
       });
   });
